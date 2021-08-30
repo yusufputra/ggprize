@@ -15,8 +15,8 @@ class CreateRefencedsTable extends Migration
     {
         Schema::create('refenceds', function (Blueprint $table) {
             $table->id();
-            $table->string('from')->references('id')->on('users');
-            $table->string('to')->references('id')->on('users');
+            $table->bigInteger('from')->references('id')->on('users');
+            $table->bigInteger('to')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -23,11 +24,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
-Route::group(['middleware' => 'jwt.verify'], function () { 
+Route::group(['middleware' => 'jwt.verify'], function () {
     //route here
-    Route::get('/userinfo',[UserController::class, 'getAuthenticatedUser']);
+    Route::get('/userinfo', [UserController::class, 'getAuthenticatedUser']);
 
-    Route::post('/addDiamond',[RewardController::class, 'addDiamond']);
-    Route::get('/getTotalDiamond',[RewardController::class, 'getTotal']);
+    Route::post('/addDiamond', [RewardController::class, 'addDiamond']);
+    Route::get('/getTotalDiamond', [RewardController::class, 'getTotal']);
 
+    Route::post('/createEvent', [EventController::class, 'addEvent']);
+    Route::get('/getAllEvent', [EventController::class, 'getAllEvent']);
+    Route::get('/detailEvent/{id}', [EventController::class, 'detailEvent']);
 });
