@@ -15,7 +15,7 @@ class CreateRewardsTable extends Migration
     {
         Schema::create('rewards', function (Blueprint $table) {
             $table->id();
-            $table->string('author')->refences('username')->on('users');
+            $table->string('author')->references('id')->on('users');
             $table->string('gameid')->nullable();
             $table->integer('point');
             $table->timestamps();

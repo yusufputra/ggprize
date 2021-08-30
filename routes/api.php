@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RewardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,9 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::group(['middleware' => 'jwt.verify'], function () { 
     //route here
+    Route::get('/userinfo',[UserController::class, 'getAuthenticatedUser']);
+
+    Route::post('/addDiamond',[RewardController::class, 'addDiamond']);
+    Route::get('/getTotalDiamond',[RewardController::class, 'getTotal']);
+
 });
