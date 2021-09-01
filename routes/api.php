@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReferencedController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -34,4 +35,6 @@ Route::group(['middleware' => 'jwt.verify'], function () {
     Route::post('/createEvent', [EventController::class, 'addEvent']);
     Route::get('/getAllEvent', [EventController::class, 'getAllEvent']);
     Route::get('/detailEvent/{id}', [EventController::class, 'detailEvent']);
+
+    Route::get('/referal/{code}', [ReferencedController::class, 'useCode']);    
 });
